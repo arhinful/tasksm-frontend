@@ -1,3 +1,4 @@
-.nav-item{
-
+.hover_nav:hover{
+    background: #0d734e !important;
+    color: white !important;
 }

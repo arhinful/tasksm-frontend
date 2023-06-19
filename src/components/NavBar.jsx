@@ -1,9 +1,9 @@
-import 'bootstrap/dist/css/bootstrap.css'
+import styles from "./NavBar.module.css"
 import Link from "next/link";
 export default function NavBar(){
     return(
         <>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="#">TaskMS</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -17,7 +17,7 @@ export default function NavBar(){
                                 <Link className="nav-link active" aria-current="page" href="">Tasks</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" href="">Add Tasks</Link>
+                                <Link className={"nav-link " + styles.hover_nav} href="/cdsd">Add Tasks</Link>
                             </li>
                         </ul>
                     </div>
