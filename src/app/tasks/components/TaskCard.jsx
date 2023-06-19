@@ -45,11 +45,15 @@ export default function TaskCard({task}){
             </div>
 
             {/* Update modal */}
-            <Modal show={updateTaskModalVisibility} onHide={closeUpdateModal} centered>
+            <Modal show={updateTaskModalVisibility} onHide={closeUpdateModal} centered size="lg">
                 <Modal.Header>
-                    <Modal.Title>Remove Task</Modal.Title>
+                    <Modal.Title>Update Task</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Are you sure you want remove this task?</Modal.Body>
+                <Modal.Body>
+                    <form>
+
+                    </form>
+                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={closeUpdateModal}>
                         Cancel
