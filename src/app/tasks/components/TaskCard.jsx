@@ -1,13 +1,53 @@
-import styles from "./TaskCard.module.css"
+'use client'
+import styles from "./taskcard.module.css"
+import {FaTrash} from "react-icons/fa";
+import {Button, Modal} from "react-bootstrap";
+import {useState} from "react";
 
 export default function TaskCard({task}){
+    const [deleteModalVisibility, setDeleteModalVisibility] = useState(false)
+    const closeDeleteModal = () => setDeleteModalVisibility(false);
+    const showDeleteModal = () => setDeleteModalVisibility(true);
+
+    const removeTask = () => {
+      closeDeleteModal()
+    }
+
     return(
         <>
-            <div className={styles.task_card + " p-2 my-3 row"}>
-                <div className={styles.no_break + " col-4"}>{task.created_at}</div>
-                <div className={styles.no_break + " col-4"}>{task.task}</div>
-                <div className={styles.no_break + " col-4"}>{task.created_at}</div>
+            <div onClick={} className={styles.task_card + " px-1 px-lg-2 py-2 py-lg-3 my-lg-3 my-2 row shadow"}>
+                <div className={styles.task_data_container + " col-12"}>{task.task}</div>
+                <div className={styles.task_data_container + " pt-2 col-12 ms-3"}>
+                    {task.description}
+                </div>
+                <div className={styles.task_data_container + " pt-2 col-12"}>
+                    <div>
+                        <span>{task.created_at}</span>
+                        <span className={task.is_completed ? " badge bg-success ms-5" : "badge bg-primary ms-5"}>
+                            {task.is_completed ? "completed" : "pending"}
+                        </span>
+
+                        <button onClick={showDeleteModal} className={styles.trash_btn + " text-danger float-end"}>
+                            <FaTrash />
+                        </button>
+                    </div>
+                </div>
             </div>
+
+            <Modal show={deleteModalVisibility} onHide={closeDeleteModal} centered>
+                <Modal.Header>
+                    <Modal.Title>Remove Task</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are you sure you want remove this task?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={closeDeleteModal}>
+                        Cancel
+                    </Button>
+                    <Button variant="danger" onClick={removeTask}>
+                        Yes
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </>
     )
 }

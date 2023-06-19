@@ -1,0 +1,17 @@
+.task_card{
+    background: #ffffff;
+    border-radius: 15px;
+    word-break: keep-all;
+}
+
+.task_data_container{
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: gray;
+}
+
+.trash_btn{
+    border: none;
+    border-radius: 50%;
+    padding: 5px 10px;
+}
