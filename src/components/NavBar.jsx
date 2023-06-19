@@ -20,7 +20,7 @@ export default function NavBar(){
                             <li className="nav-item">
                                 <Link
                                     className={"nav-link " + styles.nav_link}
-                                    href=""
+                                    href="/tasks"
                                     data-bs-toggle="tooltip"
                                     data-bs-placement="bottom"
                                     title="View all task"
@@ -31,7 +31,7 @@ export default function NavBar(){
                             <li className="nav-item">
                                 <Link
                                     className={"nav-link " + styles.nav_link}
-                                    href="/cdsd"
+                                    href="/tasks"
                                     data-bs-toggle="tooltip"
                                     data-bs-placement="bottom"
                                     title="Add new task"
