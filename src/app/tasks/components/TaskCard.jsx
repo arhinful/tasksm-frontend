@@ -7,15 +7,25 @@ import {useState} from "react";
 export default function TaskCard({task}){
     const [deleteModalVisibility, setDeleteModalVisibility] = useState(false)
     const closeDeleteModal = () => setDeleteModalVisibility(false);
-    const showDeleteModal = () => setDeleteModalVisibility(true);
+    const showDeleteModal = (event) => {
+        event.stopPropagation()
+        setDeleteModalVisibility(true)
+    };
 
     const removeTask = () => {
       closeDeleteModal()
     }
 
+    const [updateTaskModalVisibility, setUpdateTaskModalVisibility] = useState(false)
+    const closeUpdateModal = () => setUpdateTaskModalVisibility(false);
+    const showUpdateModal = () => setUpdateTaskModalVisibility(true);
+    const updateTask = () => {
+      closeUpdateModal()
+    }
+
     return(
         <>
-            <div onClick={} className={styles.task_card + " px-1 px-lg-2 py-2 py-lg-3 my-lg-3 my-2 row shadow"}>
+            <div onClick={showUpdateModal} className={styles.task_card + " px-1 px-lg-2 py-2 py-lg-3 my-lg-3 my-2 row shadow"}>
                 <div className={styles.task_data_container + " col-12"}>{task.task}</div>
                 <div className={styles.task_data_container + " pt-2 col-12 ms-3"}>
                     {task.description}
@@ -34,6 +44,23 @@ export default function TaskCard({task}){
                 </div>
             </div>
 
+            {/* Update modal */}
+            <Modal show={updateTaskModalVisibility} onHide={closeUpdateModal} centered>
+                <Modal.Header>
+                    <Modal.Title>Remove Task</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are you sure you want remove this task?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={closeUpdateModal}>
+                        Cancel
+                    </Button>
+                    <Button variant="success" onClick={updateTask}>
+                        Update task
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+            {/* Delete Modal */}
             <Modal show={deleteModalVisibility} onHide={closeDeleteModal} centered>
                 <Modal.Header>
                     <Modal.Title>Remove Task</Modal.Title>

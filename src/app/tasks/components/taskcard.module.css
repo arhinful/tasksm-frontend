@@ -14,4 +14,9 @@
     border: none;
     border-radius: 50%;
     padding: 5px 10px;
+    background: transparent;
+}
+
+.trash_btn:hover{
+    background: #f1f1f1;
 }
