@@ -1,4 +1,4 @@
-.hover_nav:hover{
-    background: #0d734e !important;
-    color: white !important;
+.nav_link{
+    color: #0d734e !important;
+    font-size: 1.7rem !important;
 }

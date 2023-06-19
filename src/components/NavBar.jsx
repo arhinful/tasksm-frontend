@@ -1,5 +1,9 @@
+'use client'
 import styles from "./NavBar.module.css"
 import Link from "next/link";
+import {FaTasks} from "react-icons/fa"
+import {AiOutlineAppstoreAdd} from "react-icons/ai"
+
 export default function NavBar(){
     return(
         <>
@@ -14,10 +18,26 @@ export default function NavBar(){
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" href="">Tasks</Link>
+                                <Link
+                                    className={"nav-link " + styles.nav_link}
+                                    href=""
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom"
+                                    title="View all task"
+                                >
+                                    <FaTasks/>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className={"nav-link " + styles.hover_nav} href="/cdsd">Add Tasks</Link>
+                                <Link
+                                    className={"nav-link " + styles.nav_link}
+                                    href="/cdsd"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom"
+                                    title="Add new task"
+                                >
+                                    <AiOutlineAppstoreAdd/>
+                                </Link>
                             </li>
                         </ul>
                     </div>
