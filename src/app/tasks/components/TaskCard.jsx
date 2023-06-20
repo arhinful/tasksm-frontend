@@ -3,6 +3,7 @@ import styles from "./taskcard.module.css"
 import {FaTrash} from "react-icons/fa";
 import {Button, Modal} from "react-bootstrap";
 import {useState} from "react";
+import UpdateTaskModal from "./UpdateTaskModal";
 
 export default function TaskCard({task}){
     const [deleteModalVisibility, setDeleteModalVisibility] = useState(false)
@@ -44,25 +45,7 @@ export default function TaskCard({task}){
                 </div>
             </div>
 
-            {/* Update modal */}
-            <Modal show={updateTaskModalVisibility} onHide={closeUpdateModal} centered size="lg">
-                <Modal.Header>
-                    <Modal.Title>Update Task</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <form>
-
-                    </form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={closeUpdateModal}>
-                        Cancel
-                    </Button>
-                    <Button variant="success" onClick={updateTask}>
-                        Update task
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            <UpdateTaskModal task={task}/>
 
             {/* Delete Modal */}
             <Modal show={deleteModalVisibility} onHide={closeDeleteModal} centered>

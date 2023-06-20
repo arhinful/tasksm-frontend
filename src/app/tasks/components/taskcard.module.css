@@ -20,3 +20,18 @@
 .trash_btn:hover{
     background: #f1f1f1;
 }
+
+.no_outline{
+    border: none;
+    background: #eaeaea;
+    resize: none;
+    color: #5b5b5b;
+}
+
+.no_outline:active, .no_outline:focus{
+    border: none;
+    background: #eaeaea;
+    resize: none;
+    outline: none;
+    color: #5b5b5b;
+}
