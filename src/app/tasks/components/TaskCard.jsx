@@ -42,7 +42,7 @@ export default function TaskCard({task}){
                 </div>
             </div>
 
-            <UpdateTaskModal task={task} isVisible={updateTaskModalVisibility} setIsVisible={hideUpdateModal}/>
+            <UpdateTaskModal task={task} isVisible={updateTaskModalVisibility} hideModal={hideUpdateModal}/>
 
             {/* Delete Modal */}
             <Modal show={deleteModalVisibility} onHide={closeDeleteModal} centered>
