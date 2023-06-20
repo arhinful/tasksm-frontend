@@ -1,9 +1,12 @@
 import {Button, Modal} from "react-bootstrap";
 import styles from "./taskcard.module.css";
 
-export default function UpdateTaskModal({ task }){
+export default function UpdateTaskModal({ task, isVisible, hideModal }){
+    const updateTask = ()=>{
+        console.log(task)
+    }
     return (
-        <Modal show={updateTaskModalVisibility} onHide={closeUpdateModal} centered size="lg">
+        <Modal show={isVisible} onHide={hideModal} centered size="lg">
             <Modal.Header>
                 <Modal.Title>Update Task</Modal.Title>
             </Modal.Header>
@@ -18,7 +21,8 @@ export default function UpdateTaskModal({ task }){
                         <label htmlFor="task">Task</label>
                     </div>
                     <div className="form-floating">
-                            <textarea className={styles.no_outline + " form-control shadow-none"} placeholder="Leave a comment here"
+                            <textarea className={styles.no_outline + " form-control shadow-none"}
+                                      placeholder="Leave a comment here"
                                       id="description"
                                       style={{height: 200}}>{task.description}</textarea>
                         <label htmlFor="description">Description/Note</label>

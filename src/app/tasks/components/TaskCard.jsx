@@ -18,11 +18,8 @@ export default function TaskCard({task}){
     }
 
     const [updateTaskModalVisibility, setUpdateTaskModalVisibility] = useState(false)
-    const closeUpdateModal = () => setUpdateTaskModalVisibility(false);
     const showUpdateModal = () => setUpdateTaskModalVisibility(true);
-    const updateTask = () => {
-      closeUpdateModal()
-    }
+    const hideUpdateModal = () => setUpdateTaskModalVisibility(false);
 
     return(
         <>
@@ -45,7 +42,7 @@ export default function TaskCard({task}){
                 </div>
             </div>
 
-            <UpdateTaskModal task={task}/>
+            <UpdateTaskModal task={task} isVisible={updateTaskModalVisibility} setIsVisible={hideUpdateModal}/>
 
             {/* Delete Modal */}
             <Modal show={deleteModalVisibility} onHide={closeDeleteModal} centered>
