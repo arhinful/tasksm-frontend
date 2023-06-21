@@ -1,7 +1,6 @@
-import axios from "axios";
+import axios from "../lib/axios";
+import useSWR from "swr";
 
-
-const taskEndPoint = "http://taskms.test/api/v1/tasks"
 const config = {
     headers:{
         'Content-Type': 'application/json',
@@ -10,7 +9,10 @@ const config = {
 };
 
 async function allTasks({filters='', callback}){
-    await axios.get(taskEndPoint, config)
+    // const {data, tasks, error, mutate} = useSWR('/tasks', ()=>{
+    //     axios.get('/api/v1/tasks').then(response => response.data.data)
+    // })
+    await axios.get("/api/v1/tasks", config)
         .then((response)=>{
             callback(response)
         }).catch((error)=>{
@@ -20,7 +22,7 @@ async function allTasks({filters='', callback}){
 
 async function addTask({data, callback}){
     data = JSON.stringify(data)
-    await axios.post(taskEndPoint, data, config)
+    await axios.post("/api/v1/tasks", data, config)
         .then((response)=>{
             callback(response)
         }).catch((error)=>{
@@ -30,7 +32,7 @@ async function addTask({data, callback}){
 
 async function updateTask({id, data, callback}){
     data = JSON.stringify(data)
-    await axios.put(`${taskEndPoint}/${id}`, data, config)
+    await axios.put(`/api/v1/tasks/${id}`, data, config)
         .then((response)=>{
             callback(response)
         }).catch((error)=>{
@@ -39,7 +41,7 @@ async function updateTask({id, data, callback}){
 }
 
 async function deleteTask(id, callback){
-    await axios.delete(`${taskEndPoint}/${id}`, config)
+    await axios.delete(`/api/v1/tasks/${id}`, config)
         .then((response)=>{
             callback(response)
         }).catch((error)=>{
