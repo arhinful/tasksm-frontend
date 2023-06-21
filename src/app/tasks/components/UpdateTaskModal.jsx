@@ -2,6 +2,7 @@ import {Button, Modal} from "react-bootstrap";
 import styles from "./taskcard.module.css";
 import {useState} from "react";
 import {updateTask} from "../../../models/task";
+import Swal from 'sweetalert2'
 
 export default function UpdateTaskModal({ task, current_modal, hideModal, setTask }){
     const updateTaskData = (event)=>{
@@ -16,6 +17,15 @@ export default function UpdateTaskModal({ task, current_modal, hideModal, setTas
             data: data,
             callback: (task)=>{
                 setTask(task)
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Task updated successfully',
+                    icon: 'success',
+                    toast: true,
+                    showConfirmButton: false,
+                    position : 'top-right',
+                    timer: 5000
+                })
             }
         })
     }
