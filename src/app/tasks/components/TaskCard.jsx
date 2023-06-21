@@ -6,19 +6,23 @@ import UpdateTaskModal from "./UpdateTaskModal";
 import {allTasks, getTask} from "../../../models/task";
 
 export default function TaskCard(){
-    const [deleteModalVisibility, setDeleteModalVisibility] = useState(false)
-    const closeDeleteModal = () => setDeleteModalVisibility(false);
-    const showDeleteModal = (event) => {
+    // Delete modal
+    const [currentDeleteModal, setCurrentDeleteModal] = useState('')
+    const showCurrenDeleteModal = (event, task_id) => {
         event.stopPropagation()
-        setDeleteModalVisibility(true)
-    };
+      setCurrentDeleteModal(task_id)
+    }
+    const closeDeleteModal = () => setCurrentDeleteModal('');
+    // End delete modal
 
     const removeTask = () => {
       closeDeleteModal()
     }
 
     const [updateTaskModalVisibility, setUpdateTaskModalVisibility] = useState(false)
-    const showUpdateModal = () => setUpdateTaskModalVisibility(true);
+    const showUpdateModal = (event) => {
+        setUpdateTaskModalVisibility(true)
+    }
     const hideUpdateModal = () => setUpdateTaskModalVisibility(false);
 
     const [tasks, setTasks] = useState("")
@@ -43,7 +47,7 @@ export default function TaskCard(){
         <>
             {
                 tasks.map((task)=>(
-                    <div key={task.id}>
+                    <div key={task.uuid}>
                         <div
                             onClick={showUpdateModal}
                             className={styles.task_card + " px-1 px-lg-2 py-2 py-lg-3 my-lg-3 my-2 row shadow"}
@@ -56,10 +60,12 @@ export default function TaskCard(){
                                 <div>
                                     <span>{task.created_at}</span>
                                     <span className={task.is_completed ? " badge bg-success ms-5" : "badge bg-primary ms-5"}>
-                            {task.is_completed ? "completed" : "pending"}
-                        </span>
+                                        {task.is_completed ? "completed" : "pending"}
+                                    </span>
 
-                                    <button onClick={showDeleteModal} className={styles.trash_btn + " text-danger float-end"}>
+                                    <button onClick={(event)=>{
+                                        showCurrenDeleteModal(event, task.id)
+                                    }} className={styles.trash_btn + " text-danger float-end"}>
                                         <FaTrash />
                                     </button>
                                 </div>
@@ -71,12 +77,13 @@ export default function TaskCard(){
                             isVisible={updateTaskModalVisibility}
                             hideModal={hideUpdateModal}
                             setTask={setTask}
+                            key={task.id}
                         />
 
                         {/* Delete Modal */}
-                        <Modal show={deleteModalVisibility} onHide={closeDeleteModal} centered>
+                        <Modal show={currentDeleteModal === task.id} onHide={closeDeleteModal} centered>
                             <Modal.Header>
-                                <Modal.Title>Remove Task</Modal.Title>
+                                <Modal.Title>Remove Task ({ task.task })</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>Are you sure you want remove this task?</Modal.Body>
                             <Modal.Footer>
