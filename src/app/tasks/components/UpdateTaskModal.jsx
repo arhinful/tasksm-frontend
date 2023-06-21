@@ -3,7 +3,7 @@ import styles from "./taskcard.module.css";
 import {useState} from "react";
 import {updateTask} from "../../../models/task";
 
-export default function UpdateTaskModal({ task, isVisible, hideModal, setTask, key }){
+export default function UpdateTaskModal({ task, isVisible, hideModal, setTask }){
     const updateTaskData = (event)=>{
         event.preventDefault()
         const data = {
@@ -27,7 +27,7 @@ export default function UpdateTaskModal({ task, isVisible, hideModal, setTask, k
                 <Modal.Title>Update Task</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <form onSubmit={updateTaskData} id="updateTaskForm">
+                <form onSubmit={updateTaskData} id={`updateTaskForm_${task.id}`}>
                     <div className="form-floating mb-3">
                         <input type="text"
                                className={styles.no_outline + " form-control shadow-none"}
@@ -54,7 +54,7 @@ export default function UpdateTaskModal({ task, isVisible, hideModal, setTask, k
                 <Button variant="secondary" onClick={hideModal}>
                     Cancel
                 </Button>
-                <Button variant="success" type="submit" form="updateTaskForm">
+                <Button variant="success" type="submit" form={`updateTaskForm_${task.id}`}>
                     Update task
                 </Button>
             </Modal.Footer>
