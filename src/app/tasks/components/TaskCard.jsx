@@ -31,8 +31,8 @@ export default function TaskCard(){
     useEffect(()=>{
         if (!tasks){
             allTasks({
-                callback: (tasks)=>{
-                    setTasks(tasks)
+                callback: (response)=>{
+                    setTasks(response.data.data)
                 }
             })
         }

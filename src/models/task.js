@@ -12,9 +12,9 @@ const config = {
 async function allTasks({filters='', callback}){
     await axios.get(taskEndPoint, config)
         .then((response)=>{
-            callback(response.data.data)
+            callback(response)
         }).catch((error)=>{
-            console.log(error)
+            callback(error)
         })
 }
 
@@ -28,9 +28,9 @@ async function updateTask({id, data, callback}){
     data = JSON.stringify(data)
     await axios.put(`${taskEndPoint}/${id}`, data, config)
         .then((response)=>{
-            callback(response.data.data)
+            callback(response)
         }).catch((error)=>{
-            console.log(error)
+            callback(error)
         })
 }
 
