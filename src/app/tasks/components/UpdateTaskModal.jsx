@@ -16,7 +16,6 @@ export default function UpdateTaskModal({ task, current_modal, hideModal, setTas
             id: task.id,
             data: data,
             callback: (response)=>{
-                console.log(response)
                 if (response.statusText === 'Accepted'){
                     setTask(response.data.data)
                     Alert.success("Task updated successfully")
