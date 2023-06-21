@@ -15,15 +15,17 @@ export default function TaskCard(){
     const closeDeleteModal = () => setCurrentDeleteModal('');
     // End delete modal
 
+    // Update modal
+    const [currentUpdateModal, setCurrentUpdateModal] = useState('')
+    const showCurrentUpdateModal = (event, task_id)=>{
+        setCurrentUpdateModal(task_id)
+    }
+    const closeUpdateModal = () => setCurrentUpdateModal('')
+    // End update modal
+
     const removeTask = () => {
       closeDeleteModal()
     }
-
-    const [updateTaskModalVisibility, setUpdateTaskModalVisibility] = useState(false)
-    const showUpdateModal = (event) => {
-        setUpdateTaskModalVisibility(true)
-    }
-    const hideUpdateModal = () => setUpdateTaskModalVisibility(false);
 
     const [tasks, setTasks] = useState("")
     useEffect(()=>{
@@ -47,9 +49,11 @@ export default function TaskCard(){
         <>
             {
                 tasks.map((task)=>(
-                    <div key={task.uuid}>
+                    <div key={task.id}>
                         <div
-                            onClick={showUpdateModal}
+                            onClick={(event)=>{
+                               showCurrentUpdateModal(event, task.id)
+                            }}
                             className={styles.task_card + " px-1 px-lg-2 py-2 py-lg-3 my-lg-3 my-2 row shadow"}
                         >
                             <div className={styles.task_data_container + " col-12"}>{task.task}</div>
@@ -74,8 +78,8 @@ export default function TaskCard(){
 
                         <UpdateTaskModal
                             task={task}
-                            isVisible={updateTaskModalVisibility}
-                            hideModal={hideUpdateModal}
+                            current_modal={currentUpdateModal}
+                            hideModal={closeUpdateModal}
                             setTask={setTask}
                             key={task.id}
                         />

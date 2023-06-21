@@ -3,7 +3,7 @@ import styles from "./taskcard.module.css";
 import {useState} from "react";
 import {updateTask} from "../../../models/task";
 
-export default function UpdateTaskModal({ task, isVisible, hideModal, setTask }){
+export default function UpdateTaskModal({ task, current_modal, hideModal, setTask }){
     const updateTaskData = (event)=>{
         event.preventDefault()
         const data = {
@@ -22,7 +22,7 @@ export default function UpdateTaskModal({ task, isVisible, hideModal, setTask })
     const [taskInput, setTaskInput] = useState(task.task)
     const [descriptionInput, setDescriptionInput] = useState(task.description)
     return (
-        <Modal show={isVisible} onHide={hideModal} centered size="lg">
+        <Modal show={current_modal === task.id} onHide={hideModal} centered size="lg">
             <Modal.Header>
                 <Modal.Title>Update Task</Modal.Title>
             </Modal.Header>
