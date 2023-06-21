@@ -18,10 +18,14 @@ async function allTasks({filters='', callback}){
         })
 }
 
-async function getTask(slug){
-    const tasks = fetch(`${taskEndPoint}/${slug}`)
-    console.log(tasks.json())
-    return tasks.json()
+async function addTask({data, callback}){
+    data = JSON.stringify(data)
+    await axios.post(taskEndPoint, data, config)
+        .then((response)=>{
+            callback(response)
+        }).catch((error)=>{
+            callback(error)
+        })
 }
 
 async function updateTask({id, data, callback}){
@@ -34,21 +38,18 @@ async function updateTask({id, data, callback}){
         })
 }
 
-async function deleteTask(slug){
-    const options = {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    }
-    const tasks = fetch(`${taskEndPoint}/${slug}`, options)
-    console.log(tasks.json())
-    return tasks.json()
+async function deleteTask(id, callback){
+    await axios.delete(`${taskEndPoint}/${id}`, config)
+        .then((response)=>{
+            callback(response)
+        }).catch((error)=>{
+            callback(error)
+        })
 }
 
 export {
     allTasks,
-    getTask,
+    addTask,
     updateTask,
+    deleteTask
 }
