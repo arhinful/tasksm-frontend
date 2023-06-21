@@ -9,7 +9,7 @@ export default function UpdateTaskModal({ task, current_modal, hideModal, setTas
         const data = {
             task: taskInput,
             description: descriptionInput,
-            is_completed: true
+            is_completed: isCompletedInput
         }
         updateTask({
             id: task.id,
@@ -19,8 +19,11 @@ export default function UpdateTaskModal({ task, current_modal, hideModal, setTas
             }
         })
     }
+
     const [taskInput, setTaskInput] = useState(task.task)
     const [descriptionInput, setDescriptionInput] = useState(task.description)
+    const [isCompletedInput, setIsCompletedInput] = useState(task.is_completed)
+
     return (
         <Modal show={current_modal === task.id} onHide={hideModal} centered size="lg">
             <Modal.Header>
@@ -47,6 +50,25 @@ export default function UpdateTaskModal({ task, current_modal, hideModal, setTas
                                       }}
                                       style={{height: 200}}></textarea>
                         <label htmlFor="description">Description/Note</label>
+                    </div>
+                    <div className="form-floating mt-3">
+                        <div className="form-check form-switch">
+                            <input
+                                className="form-check-input"
+                                type="checkbox"
+                                role="switch"
+                                id={`switch_${task.id}`}
+                                defaultChecked={isCompletedInput}
+                                onChange={(event)=>{
+                                    event.target.checked ?
+                                        setIsCompletedInput(true) :
+                                        setIsCompletedInput(false)
+                                }}
+                            />
+                                <label className="form-check-label" htmlFor={`switch_${task.id}`}>
+                                    Is completed
+                                </label>
+                        </div>
                     </div>
                 </form>
             </Modal.Body>

@@ -29,7 +29,6 @@ async function updateTask({id, data, callback}){
     await axios.put(`${taskEndPoint}/${id}`, data, config)
         .then((response)=>{
             callback(response.data.data)
-            console.log(response.data.data)
         }).catch((error)=>{
             console.log(error)
         })
