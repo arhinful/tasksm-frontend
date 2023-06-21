@@ -1,7 +1,7 @@
 'use client'
 import styles from "./NavBar.module.css"
 import Link from "next/link";
-import {FaTasks} from "react-icons/fa"
+import {FaLock, FaTasks, FaUserPlus} from "react-icons/fa"
 import {AiOutlineAppstoreAdd} from "react-icons/ai"
 
 export default function NavBar(){
@@ -25,7 +25,7 @@ export default function NavBar(){
                                     data-bs-placement="bottom"
                                     title="View all task"
                                 >
-                                    <FaTasks/>
+                                    <FaLock/>
                                 </Link>
                             </li>
                             <li className="nav-item">
@@ -36,7 +36,7 @@ export default function NavBar(){
                                     data-bs-placement="bottom"
                                     title="Add new task"
                                 >
-                                    <AiOutlineAppstoreAdd/>
+                                    <FaUserPlus/>
                                 </Link>
                             </li>
                         </ul>

@@ -1,11 +1,23 @@
 import {Button, Modal} from "react-bootstrap";
 import styles from "./taskcard.module.css";
 import {useState} from "react";
+import {updateTask} from "../../../models/task";
 
-export default function UpdateTaskModal({ task, isVisible, hideModal }){
-    const updateTask = (event)=>{
+export default function UpdateTaskModal({ task, isVisible, hideModal, setTask, key }){
+    const updateTaskData = (event)=>{
         event.preventDefault()
-        console.log(task)
+        const data = {
+            task: taskInput,
+            description: descriptionInput,
+            is_completed: true
+        }
+        updateTask({
+            id: task.id,
+            data: data,
+            callback: (task)=>{
+                setTask(task)
+            }
+        })
     }
     const [taskInput, setTaskInput] = useState(task.task)
     const [descriptionInput, setDescriptionInput] = useState(task.description)
@@ -15,7 +27,7 @@ export default function UpdateTaskModal({ task, isVisible, hideModal }){
                 <Modal.Title>Update Task</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <form onSubmit={updateTask} id="updateTaskForm">
+                <form onSubmit={updateTaskData} id="updateTaskForm">
                     <div className="form-floating mb-3">
                         <input type="text"
                                className={styles.no_outline + " form-control shadow-none"}
